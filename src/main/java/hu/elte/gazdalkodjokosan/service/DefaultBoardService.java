@@ -77,14 +77,15 @@ public class DefaultBoardService implements BoardService {
 
             SaleItem currentItem = currentPlayer.getItem(item).get(); //TODO: What if not found?
             if (! currentItem.isPurchased()) {
-//                return new BoardResponse<>("You want more than one from: " + item.name() + " ?", false, null);
-
                 int bankBalance = currentPlayer.getBankBalance();
                 int currentPrice = currentItem.cost - currentItem.getReducedPriceWith();
                 if (bankBalance >= currentPrice) {
                     currentPlayer.setBankBalance(bankBalance - currentPrice);
 
                     currentItem.purchase();
+                    if (currentItem.name.equals(Item.LAKAS.name())) {
+                        currentPlayer.setWithHouse(true);
+                    }
                     if(item.insurrance){
                         currentPlayer.getInsurances().add(item);
                     }

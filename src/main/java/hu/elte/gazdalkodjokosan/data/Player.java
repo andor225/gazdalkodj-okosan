@@ -85,6 +85,10 @@ public class Player {
         return withHouse;
     }
 
+    public void setWithHouse(boolean withHouse) {
+        this.withHouse = withHouse;
+    }
+
     public boolean isWithCar() {
         return withCar;
     }
